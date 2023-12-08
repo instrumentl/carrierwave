@@ -334,7 +334,7 @@ module CarrierWave
             @file = directory.files.create({
               :body         => fog_file || new_file.read,
               :content_type => @content_type,
-              :key          => path,
+              :key          => path.gsub(/^\//, ""),
               :public       => @uploader.fog_public
             }.merge(@uploader.fog_attributes))
             fog_file.close if fog_file && !fog_file.closed?

@@ -355,9 +355,9 @@ module CarrierWave
           encoded_path = encode_path(path)
           if (host = @uploader.asset_host)
             if host.respond_to? :call
-              "#{host.call(self)}/#{encoded_path}"
+              File.join(host.call(self), encoded_path)
             else
-              "#{host}/#{encoded_path}"
+              File.join(host, encoded_path)
             end
           else
             # AWS/Google optimized for speed over correctness
